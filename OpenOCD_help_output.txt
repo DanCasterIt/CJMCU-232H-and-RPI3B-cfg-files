@@ -1,0 +1,877 @@
+
+> help
+aarch64
+      Aarch64 command group (command valid any time)
+  aarch64 cache_info
+        display information about target caches
+  aarch64 dbginit
+        Initialize core debug
+  aarch64 maskisr ['on'|'off']
+        mask aarch64 interrupts during single-step (command valid any time)
+  aarch64 mcr cpnum op1 CRn CRm op2 value
+        write coprocessor register
+  aarch64 mrc cpnum op1 CRn CRm op2
+        read coprocessor register
+  aarch64 smp [on|off]
+        smp handling
+  aarch64 smp_gdb
+        display/fix current core played to gdb
+  aarch64 smp_off
+        Stop smp handling
+  aarch64 smp_on
+        Restart smp handling
+adapter
+      adapter command group (command valid any time)
+  adapter assert |deassert [srst|trst [assert|deassert srst|trst]]
+        Controls SRST and TRST lines.
+  adapter deassert |assert [srst|trst [deassert|assert srst|trst]]
+        Controls SRST and TRST lines.
+  adapter driver driver_name
+        Select a debug adapter driver (configuration command)
+  adapter list
+        List all built-in debug adapter drivers (command valid any time)
+  adapter name
+        Returns the name of the currently selected adapter (driver)
+        (command valid any time)
+  adapter speed [khz]
+        With an argument, change to the specified maximum jtag speed.  For
+        JTAG, 0 KHz signifies adaptive clocking. With or without argument,
+        display current setting. (command valid any time)
+  adapter srst
+        srst adapter command group (command valid any time)
+    adapter srst delay [milliseconds]
+          delay after deasserting SRST in ms (command valid any time)
+    adapter srst pulse_width [milliseconds]
+          SRST assertion pulse width in ms (command valid any time)
+  adapter transports transport ...
+        Declare transports the adapter supports. (configuration command)
+  adapter usb
+        usb adapter command group (command valid any time)
+add_help_text command_name helptext_string
+      Add new command help text; Command can be multiple tokens. (command
+      valid any time)
+add_script_search_dir <directory>
+      dir to search for config files and scripts (command valid any time)
+add_usage_text command_name usage_string
+      Add new command usage text; command can be multiple tokens. (command
+      valid any time)
+arm
+      ARM Command Group (command valid any time)
+  arm semihosting ['enable'|'disable']
+        activate support for semihosting operations
+  arm semihosting_cmdline arguments
+        command line arguments to be passed to program
+  arm semihosting_fileio ['enable'|'disable']
+        activate support for semihosting fileio operations
+  arm semihosting_resexit ['enable'|'disable']
+        activate support for semihosting resumable exit
+array2mem arrayname bitwidth address count
+      convert a TCL array to memory locations and write the 8/16/32 bit
+      values
+bindto [name]
+      Specify address by name on which to listen for incoming TCP/IP
+      connections (configuration command)
+bp [<address> [<asid>] <length> ['hw'|'hw_ctx']]
+      list or set hardware or software breakpoint
+capture command
+      Capture progress output and return as tcl return value. If the
+      progress output was empty, return tcl return value. (command valid
+      any time)
+catch_exc [(nsec_el1,nsec_el2,sec_el1,sec_el3)+,off]
+      configure exception catch
+command
+      core command group (introspection) (command valid any time)
+  command mode [command_name ...]
+        Returns the command modes allowed by a command: 'any', 'config', or
+        'exec'. If no command is specified, returns the current command
+        mode. Returns 'unknown' if an unknown command is given. Command can
+        be multiple tokens. (command valid any time)
+cti
+      CTI commands (configuration command)
+  cti create name '-chain-position' name [options ...]
+        Creates a new CTI object (command valid any time)
+  cti names
+        Lists all registered CTI objects by name (command valid any time)
+dap
+      DAP commands (configuration command)
+  dap create name '-chain-position' name
+        Creates a new DAP instance (command valid any time)
+  dap info [ap_num]
+        display ROM table for MEM-AP of current target (default currently
+        selected AP)
+  dap init
+        Initialize all registered DAP instances (command valid any time)
+  dap names
+        Lists all registered DAP instances by name (command valid any time)
+debug_level number
+      Sets the verbosity level of debugging output. 0 shows errors only; 1
+      adds warnings; 2 (default) adds other info; 3 adds debugging; 4 adds
+      extra verbose debugging. (command valid any time)
+drscan tap_name [num_bits value]* ['-endstate' state_name]
+      Execute Data Register (DR) scan for one TAP.  Other TAPs must be in
+      BYPASS mode.
+dump_image filename address size
+echo [-n] string
+      Logs a message at "user" priority. Output message to stdout. Option
+      "-n" suppresses trailing newline (command valid any time)
+exit
+      exit telnet session
+fast_load
+      loads active fast load image to current target - mainly for profiling
+      purposes
+fast_load_image filename address ['bin'|'ihex'|'elf'|'s19'] [min_address [max_length]]
+      Load image into server memory for later use by fast_load; primarily
+      for profiling (command valid any time)
+find <file>
+      print full path to file according to OpenOCD search rules (command
+      valid any time)
+flash
+      NOR flash command group (command valid any time)
+  flash bank bank_id driver_name base_address size_bytes chip_width_bytes
+            bus_width_bytes target [driver_options ...]
+        Define a new bank with the given name, using the specified NOR
+        flash driver. (configuration command)
+  flash banks
+        Display table with information about flash banks. (command valid
+        any time)
+  flash init
+        Initialize flash devices. (configuration command)
+  flash list
+        Returns a list of details about the flash banks. (command valid any
+        time)
+flush_count
+      Returns the number of times the JTAG queue has been flushed.
+ftdi_channel (0-3)
+      set the channel of the FTDI device that is used as JTAG
+      (configuration command)
+ftdi_device_desc description_string
+      set the USB device description of the FTDI device (configuration
+      command)
+ftdi_get_signal name
+      read the value of a layout-specific signal
+ftdi_layout_init data direction
+      initialize the FTDI GPIO signals used to control output-enables and
+      reset signals (configuration command)
+ftdi_layout_signal name [-data mask|-ndata mask] [-oe mask|-noe mask] [-alias|-nalias name]
+      define a signal controlled by one or more FTDI GPIO as data and/or
+      output enable (command valid any time)
+ftdi_serial serial_string
+      set the serial number of the FTDI device (configuration command)
+ftdi_set_signal name (1|0|z)
+      control a layout-specific signal
+ftdi_tdo_sample_edge (rising|falling)
+      set which TCK clock edge is used for sampling TDO - default is
+      rising-edge (Setting to falling-edge may allow signalling speed
+      increase) (command valid any time)
+ftdi_vid_pid (vid pid)*
+      the vendor ID and product ID of the FTDI device (configuration
+      command)
+gdb_breakpoint_override ('hard'|'soft'|'disable')
+      Display or specify type of breakpoint to be used by gdb 'break'
+      commands. (command valid any time)
+gdb_flash_program ('enable'|'disable')
+      enable or disable flash program (configuration command)
+gdb_memory_map ('enable'|'disable')
+      enable or disable memory map (configuration command)
+gdb_port [port_num]
+      Normally gdb listens to a TCP/IP port. Each subsequent GDB server
+      listens for the next port number after the base port number
+      specified. No arguments reports GDB port. "pipe" means listen to
+      stdin output to stdout, an integer is base port number, "disabled"
+      disables port. Any other string is are interpreted as named pipe to
+      listen to. Output pipe is the same name as input pipe, but with 'o'
+      appended. (configuration command)
+gdb_report_data_abort ('enable'|'disable')
+      enable or disable reporting data aborts (configuration command)
+gdb_report_register_access_error ('enable'|'disable')
+      enable or disable reporting register access errors (configuration
+      command)
+gdb_save_tdesc
+      Save the target description file
+gdb_sync
+      next stepi will return immediately allowing GDB to fetch register
+      state without affecting target state (command valid any time)
+gdb_target_description ('enable'|'disable')
+      enable or disable target description (configuration command)
+halt [milliseconds]
+      request target to halt, then wait up to the specified number of
+      milliseconds (default 5000) for it to complete
+help [command_name]
+      Show full command help; command can be multiple tokens. (command
+      valid any time)
+init
+      Initializes configured targets and servers.  Changes command mode
+      from CONFIG to EXEC.  Unless 'noinit' is called, this command is
+      called automatically at the end of startup. (command valid any time)
+irscan [tap_name instruction]* ['-endstate' state_name]
+      Execute Instruction Register (IR) scan.  The specified opcodes are
+      put into each TAP's IR, and other TAPs are put in BYPASS.
+jsp_port [port_num]
+      Specify port on which to listen for incoming JSP telnet connections.
+      (command valid any time)
+jtag
+      perform jtag tap actions (command valid any time)
+  jtag arp_init
+        Validates JTAG scan chain against the list of declared TAPs using
+        just the four standard JTAG signals. (command valid any time)
+  jtag arp_init-reset
+        Uses TRST and SRST to try resetting everything on the JTAG scan
+        chain, then performs 'jtag arp_init'. (command valid any time)
+  jtag cget tap_name '-event' event_name
+        Return any Tcl handler for the specified TAP event.
+  jtag configure tap_name '-event' event_name handler
+        Provide a Tcl handler for the specified TAP event. (command valid
+        any time)
+  jtag drscan tap_name [num_bits value]* ['-endstate' state_name]
+        Execute Data Register (DR) scan for one TAP.  Other TAPs must be in
+        BYPASS mode.
+  jtag flush_count
+        Returns the number of times the JTAG queue has been flushed.
+  jtag init
+        initialize jtag scan chain (command valid any time)
+  jtag names
+        Returns list of all JTAG tap names. (command valid any time)
+  jtag newtap basename tap_type '-irlen' count ['-enable'|'-disable'] ['-expected_id'
+            number] ['-ignore-version'] ['-ircapture' number] ['-mask'
+            number]
+        Create a new TAP instance named basename.tap_type, and appends it
+        to the scan chain. (configuration command)
+  jtag pathmove start_state state1 [state2 [state3 ...]]
+        Move JTAG state machine from current state (start_state) to state1,
+        then state2, state3, etc.
+  jtag tapdisable tap_name
+        Try to disable the specified TAP using the 'tap-disable' TAP event.
+  jtag tapenable tap_name
+        Try to enable the specified TAP using the 'tap-enable' TAP event.
+  jtag tapisenabled tap_name
+        Returns a Tcl boolean (0/1) indicating whether the TAP is enabled
+        (1) or not (0).
+jtag_flush_queue_sleep [sleep in ms]
+      For debug purposes(simulate long delays of interface) to test
+      performance or change in behavior. Default 0ms. (command valid any
+      time)
+jtag_ntrst_assert_width [milliseconds]
+      delay after asserting trst in ms (command valid any time)
+jtag_ntrst_delay [milliseconds]
+      delay after deasserting trst in ms (command valid any time)
+jtag_rclk [fallback_speed_khz]
+      With an argument, change to to use adaptive clocking if possible;
+      else to use the fallback speed.  With or without argument, display
+      current setting. (command valid any time)
+load_image filename address ['bin'|'ihex'|'elf'|'s19'] [min_address] [max_length]
+log_output [file_name | "default"]
+      redirect logging to a file (default: stderr) (command valid any time)
+mbatch [unique ID] [list of memory read/write requests]
+      execute a batch of memory commands
+mdb ['phys'] address [count]
+      display memory bytes
+mdd ['phys'] address [count]
+      display memory double-words
+mdh ['phys'] address [count]
+      display memory half-words
+mdw ['phys'] address [count]
+      display memory words
+measure_clk
+      Runs a test to measure the JTAG clk. Useful with RCLK / RTCK.
+      (command valid any time)
+mem2array arrayname bitwidth address count
+      read 8/16/32 bit memory and return as a TCL array for script
+      processing
+ms
+      Returns ever increasing milliseconds. Used to calculuate differences
+      in time. (command valid any time)
+mwb ['phys'] address value [count]
+      write memory byte
+mwd ['phys'] address value [count]
+      write memory double-word
+mwh ['phys'] address value [count]
+      write memory half-word
+mww ['phys'] address value [count]
+      write memory word
+nand
+      NAND flash command group (command valid any time)
+  nand device bank_id driver target [driver_options ...]
+        defines a new NAND bank (configuration command)
+  nand drivers
+        lists available NAND drivers (command valid any time)
+  nand init
+        initialize NAND devices (configuration command)
+noinit
+      Prevent 'init' from being called at startup. (configuration command)
+ocd_find file
+      find full path to file (command valid any time)
+pathmove start_state state1 [state2 [state3 ...]]
+      Move JTAG state machine from current state (start_state) to state1,
+      then state2, state3, etc.
+pld
+      programmable logic device commands (command valid any time)
+  pld device driver_name [driver_args ... ]
+        configure a PLD device (configuration command)
+  pld init
+        initialize PLD devices (configuration command)
+poll ['on'|'off']
+      poll target state; or reconfigure background polling
+poll_period
+      set the servers polling period (command valid any time)
+power_restore
+      Overridable procedure run when power restore is detected. Runs 'reset
+      init' by default. (command valid any time)
+profile seconds filename [start end]
+      profiling samples the CPU PC
+program <filename> [address] [pre-verify] [verify] [reset] [exit]
+      write an image to flash, address is only required for binary images.
+      verify, reset, exit are optional (command valid any time)
+ps
+      list all tasks
+rbp 'all' | address
+      remove breakpoint
+reg [(register_number|register_name) [(value|'force')]]
+      display (reread from target with "force") or set a register; with no
+      arguments, displays all registers and their values
+report_flash_progress [on/off]
+      Enables/disables reporting FLASH programming progress
+reset [run|halt|init]
+      Reset all targets into the specified mode. Default reset mode is run,
+      if not given.
+reset_config [none|trst_only|srst_only|trst_and_srst]
+          [srst_pulls_trst|trst_pulls_srst|combined|separate]
+          [srst_gates_jtag|srst_nogate] [trst_push_pull|trst_open_drain]
+          [srst_push_pull|srst_open_drain]
+          [connect_deassert_srst|connect_assert_srst]
+      configure adapter reset behavior (command valid any time)
+reset_nag ['enable'|'disable']
+      Nag after each reset about options that could have been enabled to
+      improve performance.  (command valid any time)
+resume [address]
+      resume target execution from current PC or address
+rpi3.a53.0
+      target command group (command valid any time)
+  rpi3.a53.0 aarch64
+        Aarch64 command group (command valid any time)
+    rpi3.a53.0 aarch64 cache_info
+          display information about target caches
+    rpi3.a53.0 aarch64 dbginit
+          Initialize core debug
+    rpi3.a53.0 aarch64 maskisr ['on'|'off']
+          mask aarch64 interrupts during single-step (command valid any
+          time)
+    rpi3.a53.0 aarch64 mcr cpnum op1 CRn CRm op2 value
+          write coprocessor register
+    rpi3.a53.0 aarch64 mrc cpnum op1 CRn CRm op2
+          read coprocessor register
+    rpi3.a53.0 aarch64 smp [on|off]
+          smp handling
+    rpi3.a53.0 aarch64 smp_gdb
+          display/fix current core played to gdb
+    rpi3.a53.0 aarch64 smp_off
+          Stop smp handling
+    rpi3.a53.0 aarch64 smp_on
+          Restart smp handling
+  rpi3.a53.0 arm
+        ARM Command Group (command valid any time)
+    rpi3.a53.0 arm semihosting ['enable'|'disable']
+          activate support for semihosting operations
+    rpi3.a53.0 arm semihosting_cmdline arguments
+          command line arguments to be passed to program
+    rpi3.a53.0 arm semihosting_fileio ['enable'|'disable']
+          activate support for semihosting fileio operations
+    rpi3.a53.0 arm semihosting_resexit ['enable'|'disable']
+          activate support for semihosting resumable exit
+  rpi3.a53.0 arp_examine ['allow-defer']
+        used internally for reset processing
+  rpi3.a53.0 arp_halt
+        used internally for reset processing
+  rpi3.a53.0 arp_halt_gdb
+        used internally for reset processing to halt GDB
+  rpi3.a53.0 arp_poll
+        used internally for reset processing
+  rpi3.a53.0 arp_reset
+        used internally for reset processing
+  rpi3.a53.0 arp_waitstate
+        used internally for reset processing
+  rpi3.a53.0 array2mem arrayname bitwidth address count
+        Writes Tcl array of 8/16/32 bit numbers to target memory
+  rpi3.a53.0 catch_exc [(nsec_el1,nsec_el2,sec_el1,sec_el3)+,off]
+        configure exception catch
+  rpi3.a53.0 cget target_attribute
+        returns the specified target attribute (command valid any time)
+  rpi3.a53.0 configure [target_attribute ...]
+        configure a new target for use (command valid any time)
+  rpi3.a53.0 curstate
+        displays the current state of this target
+  rpi3.a53.0 eventlist
+        displays a table of events defined for this target
+  rpi3.a53.0 examine_deferred
+        used internally for reset processing
+  rpi3.a53.0 invoke-event event_name
+        invoke handler for specified event
+  rpi3.a53.0 mdb address [count]
+        Display target memory as 8-bit bytes
+  rpi3.a53.0 mdd address [count]
+        Display target memory as 64-bit words
+  rpi3.a53.0 mdh address [count]
+        Display target memory as 16-bit half-words
+  rpi3.a53.0 mdw address [count]
+        Display target memory as 32-bit words
+  rpi3.a53.0 mem2array arrayname bitwidth address count
+        Loads Tcl array of 8/16/32 bit numbers from target memory
+  rpi3.a53.0 mwb address data [count]
+        Write byte(s) to target memory
+  rpi3.a53.0 mwd address data [count]
+        Write 64-bit word(s) to target memory
+  rpi3.a53.0 mwh address data [count]
+        Write 16-bit half-word(s) to target memory
+  rpi3.a53.0 mww address data [count]
+        Write 32-bit word(s) to target memory
+  rpi3.a53.0 was_examined
+        used internally for reset processing
+rpi3.a53.1
+      target command group (command valid any time)
+  rpi3.a53.1 aarch64
+        Aarch64 command group (command valid any time)
+    rpi3.a53.1 aarch64 cache_info
+          display information about target caches
+    rpi3.a53.1 aarch64 dbginit
+          Initialize core debug
+    rpi3.a53.1 aarch64 maskisr ['on'|'off']
+          mask aarch64 interrupts during single-step (command valid any
+          time)
+    rpi3.a53.1 aarch64 mcr cpnum op1 CRn CRm op2 value
+          write coprocessor register
+    rpi3.a53.1 aarch64 mrc cpnum op1 CRn CRm op2
+          read coprocessor register
+    rpi3.a53.1 aarch64 smp [on|off]
+          smp handling
+    rpi3.a53.1 aarch64 smp_gdb
+          display/fix current core played to gdb
+    rpi3.a53.1 aarch64 smp_off
+          Stop smp handling
+    rpi3.a53.1 aarch64 smp_on
+          Restart smp handling
+  rpi3.a53.1 arm
+        ARM Command Group (command valid any time)
+    rpi3.a53.1 arm semihosting ['enable'|'disable']
+          activate support for semihosting operations
+    rpi3.a53.1 arm semihosting_cmdline arguments
+          command line arguments to be passed to program
+    rpi3.a53.1 arm semihosting_fileio ['enable'|'disable']
+          activate support for semihosting fileio operations
+    rpi3.a53.1 arm semihosting_resexit ['enable'|'disable']
+          activate support for semihosting resumable exit
+  rpi3.a53.1 arp_examine ['allow-defer']
+        used internally for reset processing
+  rpi3.a53.1 arp_halt
+        used internally for reset processing
+  rpi3.a53.1 arp_halt_gdb
+        used internally for reset processing to halt GDB
+  rpi3.a53.1 arp_poll
+        used internally for reset processing
+  rpi3.a53.1 arp_reset
+        used internally for reset processing
+  rpi3.a53.1 arp_waitstate
+        used internally for reset processing
+  rpi3.a53.1 array2mem arrayname bitwidth address count
+        Writes Tcl array of 8/16/32 bit numbers to target memory
+  rpi3.a53.1 catch_exc [(nsec_el1,nsec_el2,sec_el1,sec_el3)+,off]
+        configure exception catch
+  rpi3.a53.1 cget target_attribute
+        returns the specified target attribute (command valid any time)
+  rpi3.a53.1 configure [target_attribute ...]
+        configure a new target for use (command valid any time)
+  rpi3.a53.1 curstate
+        displays the current state of this target
+  rpi3.a53.1 eventlist
+        displays a table of events defined for this target
+  rpi3.a53.1 examine_deferred
+        used internally for reset processing
+  rpi3.a53.1 invoke-event event_name
+        invoke handler for specified event
+  rpi3.a53.1 mdb address [count]
+        Display target memory as 8-bit bytes
+  rpi3.a53.1 mdd address [count]
+        Display target memory as 64-bit words
+  rpi3.a53.1 mdh address [count]
+        Display target memory as 16-bit half-words
+  rpi3.a53.1 mdw address [count]
+        Display target memory as 32-bit words
+  rpi3.a53.1 mem2array arrayname bitwidth address count
+        Loads Tcl array of 8/16/32 bit numbers from target memory
+  rpi3.a53.1 mwb address data [count]
+        Write byte(s) to target memory
+  rpi3.a53.1 mwd address data [count]
+        Write 64-bit word(s) to target memory
+  rpi3.a53.1 mwh address data [count]
+        Write 16-bit half-word(s) to target memory
+  rpi3.a53.1 mww address data [count]
+        Write 32-bit word(s) to target memory
+  rpi3.a53.1 was_examined
+        used internally for reset processing
+rpi3.a53.2
+      target command group (command valid any time)
+  rpi3.a53.2 aarch64
+        Aarch64 command group (command valid any time)
+    rpi3.a53.2 aarch64 cache_info
+          display information about target caches
+    rpi3.a53.2 aarch64 dbginit
+          Initialize core debug
+    rpi3.a53.2 aarch64 maskisr ['on'|'off']
+          mask aarch64 interrupts during single-step (command valid any
+          time)
+    rpi3.a53.2 aarch64 mcr cpnum op1 CRn CRm op2 value
+          write coprocessor register
+    rpi3.a53.2 aarch64 mrc cpnum op1 CRn CRm op2
+          read coprocessor register
+    rpi3.a53.2 aarch64 smp [on|off]
+          smp handling
+    rpi3.a53.2 aarch64 smp_gdb
+          display/fix current core played to gdb
+    rpi3.a53.2 aarch64 smp_off
+          Stop smp handling
+    rpi3.a53.2 aarch64 smp_on
+          Restart smp handling
+  rpi3.a53.2 arm
+        ARM Command Group (command valid any time)
+    rpi3.a53.2 arm semihosting ['enable'|'disable']
+          activate support for semihosting operations
+    rpi3.a53.2 arm semihosting_cmdline arguments
+          command line arguments to be passed to program
+    rpi3.a53.2 arm semihosting_fileio ['enable'|'disable']
+          activate support for semihosting fileio operations
+    rpi3.a53.2 arm semihosting_resexit ['enable'|'disable']
+          activate support for semihosting resumable exit
+  rpi3.a53.2 arp_examine ['allow-defer']
+        used internally for reset processing
+  rpi3.a53.2 arp_halt
+        used internally for reset processing
+  rpi3.a53.2 arp_halt_gdb
+        used internally for reset processing to halt GDB
+  rpi3.a53.2 arp_poll
+        used internally for reset processing
+  rpi3.a53.2 arp_reset
+        used internally for reset processing
+  rpi3.a53.2 arp_waitstate
+        used internally for reset processing
+  rpi3.a53.2 array2mem arrayname bitwidth address count
+        Writes Tcl array of 8/16/32 bit numbers to target memory
+  rpi3.a53.2 catch_exc [(nsec_el1,nsec_el2,sec_el1,sec_el3)+,off]
+        configure exception catch
+  rpi3.a53.2 cget target_attribute
+        returns the specified target attribute (command valid any time)
+  rpi3.a53.2 configure [target_attribute ...]
+        configure a new target for use (command valid any time)
+  rpi3.a53.2 curstate
+        displays the current state of this target
+  rpi3.a53.2 eventlist
+        displays a table of events defined for this target
+  rpi3.a53.2 examine_deferred
+        used internally for reset processing
+  rpi3.a53.2 invoke-event event_name
+        invoke handler for specified event
+  rpi3.a53.2 mdb address [count]
+        Display target memory as 8-bit bytes
+  rpi3.a53.2 mdd address [count]
+        Display target memory as 64-bit words
+  rpi3.a53.2 mdh address [count]
+        Display target memory as 16-bit half-words
+  rpi3.a53.2 mdw address [count]
+        Display target memory as 32-bit words
+  rpi3.a53.2 mem2array arrayname bitwidth address count
+        Loads Tcl array of 8/16/32 bit numbers from target memory
+  rpi3.a53.2 mwb address data [count]
+        Write byte(s) to target memory
+  rpi3.a53.2 mwd address data [count]
+        Write 64-bit word(s) to target memory
+  rpi3.a53.2 mwh address data [count]
+        Write 16-bit half-word(s) to target memory
+  rpi3.a53.2 mww address data [count]
+        Write 32-bit word(s) to target memory
+  rpi3.a53.2 was_examined
+        used internally for reset processing
+rpi3.a53.3
+      target command group (command valid any time)
+  rpi3.a53.3 aarch64
+        Aarch64 command group (command valid any time)
+    rpi3.a53.3 aarch64 cache_info
+          display information about target caches
+    rpi3.a53.3 aarch64 dbginit
+          Initialize core debug
+    rpi3.a53.3 aarch64 maskisr ['on'|'off']
+          mask aarch64 interrupts during single-step (command valid any
+          time)
+    rpi3.a53.3 aarch64 mcr cpnum op1 CRn CRm op2 value
+          write coprocessor register
+    rpi3.a53.3 aarch64 mrc cpnum op1 CRn CRm op2
+          read coprocessor register
+    rpi3.a53.3 aarch64 smp [on|off]
+          smp handling
+    rpi3.a53.3 aarch64 smp_gdb
+          display/fix current core played to gdb
+    rpi3.a53.3 aarch64 smp_off
+          Stop smp handling
+    rpi3.a53.3 aarch64 smp_on
+          Restart smp handling
+  rpi3.a53.3 arm
+        ARM Command Group (command valid any time)
+    rpi3.a53.3 arm semihosting ['enable'|'disable']
+          activate support for semihosting operations
+    rpi3.a53.3 arm semihosting_cmdline arguments
+          command line arguments to be passed to program
+    rpi3.a53.3 arm semihosting_fileio ['enable'|'disable']
+          activate support for semihosting fileio operations
+    rpi3.a53.3 arm semihosting_resexit ['enable'|'disable']
+          activate support for semihosting resumable exit
+  rpi3.a53.3 arp_examine ['allow-defer']
+        used internally for reset processing
+  rpi3.a53.3 arp_halt
+        used internally for reset processing
+  rpi3.a53.3 arp_halt_gdb
+        used internally for reset processing to halt GDB
+  rpi3.a53.3 arp_poll
+        used internally for reset processing
+  rpi3.a53.3 arp_reset
+        used internally for reset processing
+  rpi3.a53.3 arp_waitstate
+        used internally for reset processing
+  rpi3.a53.3 array2mem arrayname bitwidth address count
+        Writes Tcl array of 8/16/32 bit numbers to target memory
+  rpi3.a53.3 catch_exc [(nsec_el1,nsec_el2,sec_el1,sec_el3)+,off]
+        configure exception catch
+  rpi3.a53.3 cget target_attribute
+        returns the specified target attribute (command valid any time)
+  rpi3.a53.3 configure [target_attribute ...]
+        configure a new target for use (command valid any time)
+  rpi3.a53.3 curstate
+        displays the current state of this target
+  rpi3.a53.3 eventlist
+        displays a table of events defined for this target
+  rpi3.a53.3 examine_deferred
+        used internally for reset processing
+  rpi3.a53.3 invoke-event event_name
+        invoke handler for specified event
+  rpi3.a53.3 mdb address [count]
+        Display target memory as 8-bit bytes
+  rpi3.a53.3 mdd address [count]
+        Display target memory as 64-bit words
+  rpi3.a53.3 mdh address [count]
+        Display target memory as 16-bit half-words
+  rpi3.a53.3 mdw address [count]
+        Display target memory as 32-bit words
+  rpi3.a53.3 mem2array arrayname bitwidth address count
+        Loads Tcl array of 8/16/32 bit numbers from target memory
+  rpi3.a53.3 mwb address data [count]
+        Write byte(s) to target memory
+  rpi3.a53.3 mwd address data [count]
+        Write 64-bit word(s) to target memory
+  rpi3.a53.3 mwh address data [count]
+        Write 16-bit half-word(s) to target memory
+  rpi3.a53.3 mww address data [count]
+        Write 32-bit word(s) to target memory
+  rpi3.a53.3 was_examined
+        used internally for reset processing
+rpi3.cti.0
+      cti instance command group (command valid any time)
+  rpi3.cti.0 ack event
+        acknowledge a CTI event
+  rpi3.cti.0 channel channel_number operation
+        do an operation on one CTI channel, possible operations: gate,
+        ungate, set, clear and pulse
+  rpi3.cti.0 dump
+        dump CTI registers
+  rpi3.cti.0 enable 'on'|'off'
+        enable or disable the CTI
+  rpi3.cti.0 read register_name
+        read a CTI register
+  rpi3.cti.0 testmode 'on'|'off'
+        enable or disable integration test mode
+  rpi3.cti.0 write register_name value
+        write to a CTI register
+rpi3.cti.1
+      cti instance command group (command valid any time)
+  rpi3.cti.1 ack event
+        acknowledge a CTI event
+  rpi3.cti.1 channel channel_number operation
+        do an operation on one CTI channel, possible operations: gate,
+        ungate, set, clear and pulse
+  rpi3.cti.1 dump
+        dump CTI registers
+  rpi3.cti.1 enable 'on'|'off'
+        enable or disable the CTI
+  rpi3.cti.1 read register_name
+        read a CTI register
+  rpi3.cti.1 testmode 'on'|'off'
+        enable or disable integration test mode
+  rpi3.cti.1 write register_name value
+        write to a CTI register
+rpi3.cti.2
+      cti instance command group (command valid any time)
+  rpi3.cti.2 ack event
+        acknowledge a CTI event
+  rpi3.cti.2 channel channel_number operation
+        do an operation on one CTI channel, possible operations: gate,
+        ungate, set, clear and pulse
+  rpi3.cti.2 dump
+        dump CTI registers
+  rpi3.cti.2 enable 'on'|'off'
+        enable or disable the CTI
+  rpi3.cti.2 read register_name
+        read a CTI register
+  rpi3.cti.2 testmode 'on'|'off'
+        enable or disable integration test mode
+  rpi3.cti.2 write register_name value
+        write to a CTI register
+rpi3.cti.3
+      cti instance command group (command valid any time)
+  rpi3.cti.3 ack event
+        acknowledge a CTI event
+  rpi3.cti.3 channel channel_number operation
+        do an operation on one CTI channel, possible operations: gate,
+        ungate, set, clear and pulse
+  rpi3.cti.3 dump
+        dump CTI registers
+  rpi3.cti.3 enable 'on'|'off'
+        enable or disable the CTI
+  rpi3.cti.3 read register_name
+        read a CTI register
+  rpi3.cti.3 testmode 'on'|'off'
+        enable or disable integration test mode
+  rpi3.cti.3 write register_name value
+        write to a CTI register
+rpi3.dap
+      dap instance command group (command valid any time)
+  rpi3.dap apcsw [value [mask]]
+        Set CSW default bits (command valid any time)
+  rpi3.dap apid [ap_num]
+        return ID register from AP (default currently selected AP)
+  rpi3.dap apreg ap_num reg [value]
+        read/write a register from AP (reg is byte address of a word
+        register, like 0 4 8...)
+  rpi3.dap apsel [ap_num]
+        Set the currently selected AP (default 0) and display the result
+        (command valid any time)
+  rpi3.dap baseaddr [ap_num]
+        return debug base address from MEM-AP (default currently selected
+        AP)
+  rpi3.dap dpreg reg [value]
+        read/write a register from DP (reg is byte address (bank << 4 |
+        reg) of a word register, like 0 4 8...)
+  rpi3.dap info [ap_num]
+        display ROM table for MEM-AP (default currently selected AP)
+  rpi3.dap memaccess [cycles]
+        set/get number of extra tck for MEM-AP memory bus access [0-255]
+  rpi3.dap ti_be_32_quirks [enable]
+        set/get quirks mode for TI TMS450/TMS570 processors (configuration
+        command)
+run_until_stop_fast [timeout]
+      Runs the target until a stop occurs
+runtest num_cycles
+      Move to Run-Test/Idle, and issue TCK for num_cycles.
+rwp address
+      remove watchpoint
+scan_chain
+      print current scan chain configuration (command valid any time)
+script <file>
+      filename of OpenOCD script (tcl) to run (command valid any time)
+shutdown
+      shut the server down (command valid any time)
+sleep milliseconds ['busy']
+      Sleep for specified number of milliseconds.  "busy" will busy wait
+      instead (avoid this). (command valid any time)
+soft_reset_halt
+      halt the target and do a soft reset
+srst_deasserted
+      Overridable procedure run when srst deassert is detected. Runs 'reset
+      init' by default. (command valid any time)
+step [address]
+      step one instruction from current PC or address
+svf svf [-tap device.tap] <file> [quiet] [nil] [progress] [ignore_error]
+      Runs a SVF file.
+target
+      configure target (configuration command)
+  target amp targetname1 targetname2 ...
+        gather several target in an amp list (command valid any time)
+  target create name type '-chain-position' name [options ...]
+        Creates and selects a new target (configuration command)
+  target current
+        Returns the currently selected target (command valid any time)
+  target init
+        initialize targets (configuration command)
+  target names
+        Returns the names of all targets as a list of strings (command
+        valid any time)
+  target smp targetname1 targetname2 ...
+        gather several target in a smp list (command valid any time)
+  target types
+        Returns the available target types as a list of strings (command
+        valid any time)
+target_request
+      target request command group (command valid any time)
+  target_request debugmsgs ['enable'|'charmsg'|'disable']
+        display and/or modify reception of debug messages from target
+targets [target]
+      change current default target (one parameter) or prints table of all
+      targets (no parameters) (command valid any time)
+tcl_notifications [on|off]
+      Target Notification output
+tcl_port [port_num]
+      Specify port on which to listen for incoming Tcl syntax.  Read help
+      on 'gdb_port'. (configuration command)
+tcl_trace [on|off]
+      Target trace output
+telnet_port [port_num]
+      Specify port on which to listen for incoming telnet connections.
+      Read help on 'gdb_port'. (configuration command)
+test_image filename [offset [type]]
+test_mem_access size
+      Test the target's memory access functions
+tms_sequence ['short'|'long']
+      Display or change what style TMS sequences to use for JTAG state
+      transitions:  short (default) or long.  Only for working around JTAG
+      bugs. (command valid any time)
+trace
+      trace command group
+  trace history ['clear'|size]
+        display trace history, clear history or set size
+  trace point ['clear'|address]
+        display trace points, clear list of trace points, or add new
+        tracepoint at address
+transport
+      Transport command group (command valid any time)
+  transport init
+        Initialize this session's transport (command valid any time)
+  transport list
+        list all built-in transports (command valid any time)
+  transport select [transport_name]
+        Select this session's transport (command valid any time)
+usage [command_name]
+      Show basic command usage; command can be multiple tokens. (command
+      valid any time)
+verify_image filename [offset [type]]
+verify_image_checksum filename [offset [type]]
+verify_ircapture ['enable'|'disable']
+      Display or assign flag controlling whether to verify values captured
+      during Capture-IR. (command valid any time)
+verify_jtag ['enable'|'disable']
+      Display or assign flag controlling whether to verify values captured
+      during IR and DR scans. (command valid any time)
+version
+      show program version (command valid any time)
+virt2phys virtual_address
+      translate a virtual address into a physical address (command valid
+      any time)
+wait_for_stop [timeout]
+      Waits for the target to stop
+wait_halt [milliseconds]
+      wait up to the specified number of milliseconds (default 5000) for a
+      previously requested halt
+wait_srst_deassert ms
+      Wait for an SRST deassert. Useful for cases where you need something
+      to happen within ms of an srst deassert. Timeout in ms  (command
+      valid any time)
+wp [address length [('r'|'w'|'a') value [mask]]]
+      list (no params) or create watchpoints
+xsvf (tapname|'plain') filename ['virt2'] ['quiet']
+      Runs a XSVF file.  If 'virt2' is given, xruntest counts are
+      interpreted as TCK cycles rather than as microseconds.  Without the
+      'quiet' option, all comments, retries, and mismatches will be
+      reported.
+>
